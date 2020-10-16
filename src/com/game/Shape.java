@@ -46,12 +46,64 @@ public class Shape {
     int y(int index) {
         return coords[index][1];
     }
+
     Tetrominoe getShape(){
         return pieceShape;
     }
 
+    void setRandomShape(){
+        var r = new Random();
+        int x = Math.abs(r.nextInt()) % 7 + 1;
 
+        Tetrominoe[] values = Tetrominoe.values();
+        setShape(values[x]);
+    }
 
+    public int minX(){
+        int m = coords[0][0];
+
+        for (int i = 0; i<4; i++){
+            m = Math.min(m, coords[i][0]);
+        }
+        return m;
+    }
+
+    public int minY(){
+        int m = coords[0][0];
+
+        for (int i = 0; i<4; i++){
+            m = Math.min(m, coords[i][1]);
+        }
+        return m;
+    }
+
+    Shape rotateLeft(){
+        if (pieceShape == Tetrominoe.SquareShape){
+            return this;
+        }
+        var result = new Shape();
+        result.pieceShape = pieceShape;
+
+        for (int i = 0; i<4; i++){
+            result.setX(i, y(i));
+            result.setY(i, -x(i));
+        }
+        return result;
+    }
+
+    Shape rotateRight(){
+        if (pieceShape == Tetrominoe.SquareShape){
+            return this;
+        }
+        var result = new Shape();
+        result.pieceShape = pieceShape;
+
+        for (int i = 0; i<4; i++){
+            result.setX(i, -y(i));
+            result.setY(i, x(i));
+        }
+        return result;
+    }
 
 
 }
