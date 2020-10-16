@@ -49,15 +49,9 @@ public class Shape {
     Tetrominoe getShape(){
         return pieceShape;
     }
-    void setRandomShape(){
-        var r = new Random();
-        int x = Math.abs(r.nextInt()) % 7 + 1;
 
-        Tetrominoe[] values = Tetrominoe.values();
-        setShape(values[x]);
-    }
 
-    
+
 
 
 }
